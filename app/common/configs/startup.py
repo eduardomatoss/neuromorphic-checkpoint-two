@@ -18,13 +18,13 @@ def load_seed():
 
     thingspeak_list = thingspeak_api_client.get_data()
 
-    for thingspeak_data in thingspeak_list.feeds:
-        logger.info("Saving temperature data in the database")
+    logger.info("Saving temperature data in the database")
 
+    for thingspeak_data in thingspeak_list.feeds:
         try:
             db_temperature = TemperatureModel(
                 temperature=thingspeak_data.temperature,
-                humedad=thingspeak_data.humedad,
+                moisture=thingspeak_data.moisture,
                 atmospheric_station=thingspeak_data.atmospheric_station,
                 atmospheric_sea=thingspeak_data.atmospheric_sea,
                 wind=thingspeak_data.wind,
@@ -34,7 +34,7 @@ def load_seed():
             )
             db.add(db_temperature)
             db.commit()
-
-            logger.info("Saved temperature in database")
         except Exception as error:
             logger.error(error)
+
+    logger.info("Saved temperature in database")

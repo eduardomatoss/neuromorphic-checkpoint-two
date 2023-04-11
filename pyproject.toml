@@ -14,6 +14,7 @@ sqlalchemy = "^2.0.9"
 psycopg2-binary = "^2.9.6"
 alembic = "^1.10.3"
 dataclasses-json = "^0.5.7"
+seaborn = "^0.12.2"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -8,8 +8,10 @@ from dataclasses_json import dataclass_json, Undefined, config
 @dataclass(frozen=False)
 class FeedBase:
     temperature: float = field(metadata=config(field_name="field1"), default=float)
-    humedad: float = field(metadata=config(field_name="field2"), default=float)
-    atmospheric_station: float = field(metadata=config(field_name="field3"), default=float)
+    moisture: float = field(metadata=config(field_name="field2"), default=float)
+    atmospheric_station: float = field(
+        metadata=config(field_name="field3"), default=float
+    )
     atmospheric_sea: float = field(metadata=config(field_name="field4"), default=float)
     wind: float = field(metadata=config(field_name="field5"), default=float)
     rain_mm: float = field(metadata=config(field_name="field6"), default=float)

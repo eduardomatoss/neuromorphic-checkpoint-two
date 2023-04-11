@@ -13,7 +13,7 @@ class Temperature(Base):
     __tablename__ = "temperature"
     id = Column(Integer, primary_key=True, index=True)
     temperature = Column(Float)
-    humedad = Column(Float)
+    moisture = Column(Float)
     atmospheric_station = Column(Float)
     atmospheric_sea = Column(Float)
     wind = Column(Float)
