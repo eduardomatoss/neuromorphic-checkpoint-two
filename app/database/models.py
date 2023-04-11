@@ -2,14 +2,21 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (
     Column,
     Integer,
-    String,
+    Float,
 )
 
 
 Base = declarative_base()
 
 
-class Example(Base):
-    __tablename__ = "exemple"
+class Temperature(Base):
+    __tablename__ = "temperature"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(50))
+    temperature = Column(Float)
+    humedad = Column(Float)
+    atmospheric_station = Column(Float)
+    atmospheric_sea = Column(Float)
+    wind = Column(Float)
+    rain_mm = Column(Float)
+    direction_wind = Column(Float)
+    uv = Column(Float)

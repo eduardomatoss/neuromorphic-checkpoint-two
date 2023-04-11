@@ -15,9 +15,15 @@ endif
 local/install: generate-default-env-file
 	poetry install
 
+local/bandit:
+	bandit -r . app *.py
+
 local/lint:
-	poetry run flake8 .
-	poetry run black --check .
+	poetry run flake8 app/
+	poetry run black --check app/
+
+local/lint/fix:
+	poetry run black app/
 
 local/run:
 	poetry run streamlit run run.py
@@ -33,21 +39,30 @@ docker/build: generate-default-env-file
 docker/up:
 	docker-compose up -d
 
+docker/postgres/up:
+	CURRENT_UID=${DOCKER_USER} docker-compose up -d postgres-db
+
 docker/down:
 	docker-compose down --remove-orphans
 
-docker/lint:
-	docker-compose run ${APP_NAME} poetry run flake8 .
-	docker-compose run ${APP_NAME} poetry run black --check .
+docker/bandit:
+	CURRENT_UID=${DOCKER_USER} docker-compose run ${APP_NAME} poetry run bandit -r . app *.py
 
-docker/run:
+docker/lint:
+	docker-compose run ${APP_NAME} poetry run flake8 app/
+	docker-compose run ${APP_NAME} poetry run black --check app/
+
+docker/lint/fix:
+	docker-compose run ${APP_NAME} poetry run black app/
+
+docker/run: docker/postgres/up docker/migrations/upgrade
 	docker-compose run ${APP_NAME} poetry run streamlit run run.py
 
 docker/migrations/generate:
-	CURRENT_UID=${DOCKER_USER} docker-compose run ${APP_NAME} alembic revision --autogenerate
+	CURRENT_UID=${DOCKER_USER} docker-compose run ${APP_NAME} poetry run alembic revision --autogenerate
 
 docker/migrations/upgrade:
-	CURRENT_UID=${DOCKER_USER} docker-compose run ${APP_NAME} alembic upgrade head
+	CURRENT_UID=${DOCKER_USER} docker-compose run ${APP_NAME} poetry run alembic upgrade head
 
 ##################
 # HELPFUL COMMANDS

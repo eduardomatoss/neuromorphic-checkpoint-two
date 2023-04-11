@@ -12,7 +12,7 @@ def create_session():
 
 def get_connection_string():
     driver = "postgresql+psycopg2"
-    return f'{driver}://{env("DATABASE_USER")}:{env("DATABASE_PASSWORD")}@{env("DATABASE_URL")}:{env("DATABASE_PORT")}/{env("DATABASE_NAME")}'
+    return f'{driver}://{env("DATABASE_USER")}:{env("DATABASE_PASSWORD")}@{env("DATABASE_URL")}:{env("DATABASE_PORT")}/{env("DATABASE_NAME")}'  # noqa: E501
 
 
 def get_db():

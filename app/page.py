@@ -1,4 +1,5 @@
 import streamlit as st
 
-def startup():
-    st.title('Simple Text')
+
+def load_page():
+    st.title("Simple Text")

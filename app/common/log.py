@@ -25,7 +25,7 @@ def get_application_access_log():
 
 
 def create_logger():
-    app_env = settings.get("ENV_FOR_DYNACONF", "")
+    app_env = settings.get("ENV_FOR_DYNACONF", "")  # noqa: F841
     log_level = get_application_log_level()
     handlers = ["stdout"]
 
