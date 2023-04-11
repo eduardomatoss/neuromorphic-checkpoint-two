@@ -7,7 +7,7 @@ from app.common.log import create_logger
 
 create_logger()
 logger = getLogger()
-# load_seed()
+load_seed()
 
 if __name__ == "__main__":
     load_page()

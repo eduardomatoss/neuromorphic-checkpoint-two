@@ -11,7 +11,9 @@ st.set_option("deprecation.showPyplotGlobalUse", False)
 def load_page():
     df = create_dataframe()
 
-    st.title("Neuromorphic Computing and Supercomputers")
+    st.header("Neuromorphic Computing and Supercomputers")
+
+    st.subheader("Dataset Information")
 
     sns.scatterplot(x="temperature", y="moisture", data=df)
 
@@ -19,9 +21,13 @@ def load_page():
     st.pyplot()
 
     plt.figure(figsize=(10, 10))
-    sns.heatmap(df.corr(), annot=True)
+    sns.heatmap(df.corr(), annot=True, cmap="crest")
     plt.title("Correlação Dados")
     st.pyplot()
+
+    st.divider()
+
+    st.subheader("Prediction Data")
 
     X_test, y_test, y_pred, r2, mse, mae = predict_model(df)
 
