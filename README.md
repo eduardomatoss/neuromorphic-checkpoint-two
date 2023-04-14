@@ -73,3 +73,10 @@ _Please, check all available commands in the [Makefile](Makefile) for more infor
 - If you use the [vscode](https://code.visualstudio.com/) editor we have some examples of [launch.json](.docs/vscode.md) to speed up your tests.
 
     *Note: When you run the install command (using docker or locally), a .env file will be created automatically based on [env.template](env.template)*
+
+
+### Frontend
+
+Frontend screenshot after getting data in Thingspeak API and plotting graphs.
+
+![frontend](.docs/images/frontend-plot-data.png)
