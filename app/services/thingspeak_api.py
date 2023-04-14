@@ -7,7 +7,10 @@ from app.dtos.thingspeak import ThingspeakResponse
 @dataclass
 class ThingspeakApiClient(BaseApiClient):
     def get_data(self, size: int = 10000) -> ThingspeakResponse:
-        response = self.get(f"/channels/1293177/feeds.json?results={size}")
+        response = self.get(
+            f"/channels/1293177/feeds.json",
+            params={f"results": {size}},
+        )
         if response.get("error"):
             raise response.get("error")
 

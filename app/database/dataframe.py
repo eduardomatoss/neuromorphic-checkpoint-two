@@ -10,4 +10,6 @@ def create_dataframe():
 
     df = pd.DataFrame(query.fetchall())
 
+    df.drop("id", axis=1, inplace=True)
+
     return df
